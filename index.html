@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <title>GitLab 项目搜索</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <!-- ================ 搜索 View ================ -->
+  <div id="searchView" class="app">
+    <div class="topbar">
+      <input id="searchInput" class="search-input" type="text" placeholder="搜索项目名 / 路径 / 描述 / 拼音首字母…" autocomplete="off" />
+      <span id="status" class="status"></span>
+      <button id="settingsBtn" class="icon-btn" title="打开设置">⚙ 设置</button>
+    </div>
+    <div id="banner" class="banner" style="display:none"></div>
+    <div id="list" class="list"></div>
+    <div class="footbar">
+      <span><kbd>↵</kbd> 主页</span>
+      <span><kbd>⌘↵</kbd> MR</span>
+      <span><kbd>⌥↵</kbd> Issues</span>
+      <span><kbd>⇧↵</kbd> Pipelines</span>
+      <span><kbd>⌘C</kbd> HTTPS</span>
+      <span><kbd>⌘⇧C</kbd> SSH</span>
+      <span><kbd>⌘⇧↵</kbd> Clone</span>
+      <span><kbd>↑↓</kbd> 移动</span>
+    </div>
+  </div>
+
+  <!-- ================ 设置 View ================ -->
+  <div id="settingsView" class="settings" style="display:none">
+    <h1>GitLab 插件设置</h1>
+
+    <h2>连接配置</h2>
+
+    <div class="field">
+      <label>
+        GitLab 地址
+        <span class="hint">公有 gitlab.com 或自建实例</span>
+      </label>
+      <input id="baseUrl" type="text" placeholder="https://gitlab.com" />
+    </div>
+
+    <div class="field">
+      <label>
+        Personal Access Token
+        <span class="hint">需要 <code>read_api</code> 权限</span>
+      </label>
+      <div class="input-group">
+        <input id="token" type="password" placeholder="glpat-xxxxxxxxxxxx" autocomplete="off" />
+        <button type="button" id="toggleTokenBtn">显示</button>
+      </div>
+      <div class="status-line">
+        在 GitLab: <em>用户头像 → Preferences → Access Tokens</em> 中生成；scope 勾选 <code>read_api</code>。
+      </div>
+    </div>
+
+    <div class="actions">
+      <button id="testBtn">测试连接</button>
+      <button id="saveBtn" class="primary">保存</button>
+    </div>
+    <div id="testStatus" class="status-line"></div>
+
+    <h2>克隆配置</h2>
+
+    <div class="field">
+      <label>
+        默认克隆目录
+        <span class="hint">一键克隆时使用；留空则每次弹出选择器</span>
+      </label>
+      <div class="input-group">
+        <input id="cloneDir" type="text" placeholder="/Users/you/Code" />
+        <button type="button" id="browseCloneDirBtn">浏览…</button>
+      </div>
+    </div>
+
+    <div class="actions">
+      <button id="saveCloneBtn" class="primary">保存克隆配置</button>
+    </div>
+    <div id="cloneConfigStatus" class="status-line"></div>
+
+    <h2>项目同步</h2>
+
+    <div class="stats">
+      <div class="stat">
+        <div class="num" id="statCount">-</div>
+        <div class="label">本地项目总数</div>
+      </div>
+      <div class="stat">
+        <div class="num" id="statLastSync">-</div>
+        <div class="label">最后同步时间</div>
+      </div>
+    </div>
+
+    <div class="actions">
+      <button id="syncBtn" class="primary">立即同步</button>
+      <button id="clearBtn" class="danger">清除缓存</button>
+    </div>
+    <div id="syncStatus" class="status-line"></div>
+    <div id="syncProgress" class="progress-bar"><div class="fill"></div></div>
+
+    <h2>操作</h2>
+    <div class="actions">
+      <button id="openSearchBtn">返回搜索</button>
+    </div>
+  </div>
+
+  <script src="lib/fuse.min.js"></script>
+  <script src="lib/pinyin-pro.min.js"></script>
+  <script src="js/utils.js"></script>
+  <script src="js/search.js"></script>
+  <script src="js/settings.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

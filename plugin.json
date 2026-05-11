@@ -1,0 +1,33 @@
+{
+  "main": "index.html",
+  "logo": "logo.png",
+  "preload": "preload.js",
+  "pluginName": "GitLab 项目搜索",
+  "description": "快速搜索和打开你的 GitLab 项目",
+  "author": "songsong",
+  "version": "0.1.0",
+  "homepage": "",
+  "features": [
+    {
+      "code": "gitlab-search",
+      "explain": "搜索 GitLab 项目",
+      "cmds": [
+        "gl",
+        "gitlab",
+        "gitlab搜索",
+        {
+          "type": "regex",
+          "label": "搜索 GitLab 项目",
+          "match": "/.+/",
+          "minLength": 1,
+          "maxLength": 60
+        }
+      ]
+    },
+    {
+      "code": "gitlab-settings",
+      "explain": "GitLab 插件设置",
+      "cmds": ["gl-setup", "gitlab设置"]
+    }
+  ]
+}

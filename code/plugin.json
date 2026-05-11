@@ -6,23 +6,23 @@
   "description": "快速搜索和打开你的 GitLab 项目",
   "author": "songsong",
   "version": "0.1.0",
-  "homepage": "",
   "features": [
+    {
+      "code": "over",
+      "cmds": [
+        {
+          "type": "over",
+          "label": "搜索 GitLab 项目",
+          "exclude": "/\\n/",
+          "minLength": 1,
+          "maxLength": 500
+        }
+      ]
+    },
     {
       "code": "gitlab-search",
       "explain": "搜索 GitLab 项目",
-      "cmds": [
-        "gl",
-        "gitlab",
-        "gitlab搜索",
-        {
-          "type": "regex",
-          "label": "搜索 GitLab 项目",
-          "match": "/.+/",
-          "minLength": 1,
-          "maxLength": 60
-        }
-      ]
+      "cmds": ["gl", "gitlab", "gitlab搜索"]
     },
     {
       "code": "gitlab-settings",
